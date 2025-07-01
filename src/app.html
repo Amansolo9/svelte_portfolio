@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+		<style>
+			@font-face {
+				font-family: 'Lexend';
+				src: url('/fonts/Lexend-Regular.ttf') format('truetype');
+				font-weight: normal;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: 'Lexend';
+				src: url('/fonts/Lexend-Bold.ttf') format('truetype');
+				font-weight: bold;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: 'Lexend';
+				src: url('/fonts/Lexend-Light.ttf') format('truetype');
+				font-weight: 300;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: 'Lexend';
+				src: url('/fonts/Lexend-Thin.ttf') format('truetype');
+				font-weight: 100;
+				font-style: normal;
+			}
+			html, body {
+				font-family: 'Lexend', sans-serif;
+			}
+		</style>
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
