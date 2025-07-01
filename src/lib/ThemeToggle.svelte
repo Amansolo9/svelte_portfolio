@@ -3,36 +3,24 @@
   import Moon from 'phosphor-svelte/lib/Moon';
   import { onMount } from 'svelte';
   import { theme } from './themeStore.js';
-  import { get } from 'svelte/store';
 
   let isDarkMode = false;
 
+  /**
+   * @param {boolean} dark
+   */
   function setTheme(dark) {
     isDarkMode = dark;
     theme.set(isDarkMode ? 'dark' : 'light');
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
   }
 
   function toggleTheme() {
     setTheme(!isDarkMode);
   }
 
-  // React to store changes (e.g., from other components)
   $: theme.subscribe(val => {
     isDarkMode = val === 'dark';
-    if (typeof window !== 'undefined') {
-      if (isDarkMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
   });
 
   onMount(() => {
