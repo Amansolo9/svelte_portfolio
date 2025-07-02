@@ -1,11 +1,22 @@
 <script lang="ts">
-  import Lottie from '../../lib/Lottie.svelte';
-  import { onMount } from 'svelte';
+  import Lottie from '../lib/Lottie.svelte';
+  import { onMount, onDestroy } from 'svelte';
   let animationData: any;
 
   onMount(async () => {
     const res = await fetch('/assets/maintainance.json');
     animationData = await res.json();
+    // Prevent scrolling (client only)
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+  });
+  onDestroy(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
   });
 </script>
 
@@ -20,15 +31,20 @@
 
 <style>
   .maintainance-bg {
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
   }
   .lottie-wrapper {
     display: flex;
@@ -43,4 +59,4 @@
     text-align: center;
     letter-spacing: 1px;
   }
-</style>
+</style> 

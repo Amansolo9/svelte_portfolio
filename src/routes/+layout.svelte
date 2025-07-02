@@ -3,6 +3,9 @@
   import ArrowDown from 'phosphor-svelte/lib/ArrowDown';
   import { theme } from '../lib/themeStore.js';
   import { page } from '$app/stores';
+  import { rootPage } from '../lib/pageControlStore.js';
+  import PortfolioPage from './PortfolioPage.svelte';
+  import MaintainancePage from './MaintainancePage.svelte';
   let arrowColor = "#222";
   $: arrowColor = $theme === 'dark' ? '#fff' : '#222';
   $: {
@@ -16,7 +19,11 @@
   }
 </script>
 
-{#if $page.url.pathname !== '/'}
+{#if $page.url.pathname === '/' && $rootPage === 'maintainance'}
+  <!-- Root page with maintainance - hide nav bar -->
+  <MaintainancePage />
+{:else}
+  <!-- All other cases - show nav bar and normal layout -->
   <div class="theme-toggle-fixed">
     <ThemeToggle />
   </div>
@@ -36,8 +43,8 @@
     </div>
   </nav>
   <hr class="divider" />
+  <slot />
 {/if}
-<slot />
 
 <style>
   :global(.dark) .nav-link {

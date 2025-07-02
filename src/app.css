@@ -1,26 +1,30 @@
 @font-face {
   font-family: 'Lexend';
-  src: url('/fonts/Lexend-Regular.ttf') format('truetype');
+  src: local('Lexend'), url('/fonts/Lexend-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Lexend';
-  src: url('/fonts/Lexend-Bold.ttf') format('truetype');
+  src: local('Lexend'), url('/fonts/Lexend-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Lexend';
-  src: url('/fonts/Lexend-Light.ttf') format('truetype');
+  src: local('Lexend'), url('/fonts/Lexend-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Lexend';
-  src: url('/fonts/Lexend-Thin.ttf') format('truetype');
+  src: local('Lexend'), url('/fonts/Lexend-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 html, body {
   font-family: 'Lexend', sans-serif;
@@ -31,4 +35,17 @@ html, body {
 .dark {
   background-color: #1a1a1a;
   color: #ffffff;
+}
+
+/* Debug: Remove after confirming font loads */
+#lexend-test {
+  font-family: 'Lexend', sans-serif;
+  font-size: 2rem;
+  color: red;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  background: #fff;
+  pointer-events: none;
 }
