@@ -36,16 +36,3 @@ html, body {
   background-color: #1a1a1a;
   color: #ffffff;
 }
-
-/* Debug: Remove after confirming font loads */
-#lexend-test {
-  font-family: 'Lexend', sans-serif;
-  font-size: 2rem;
-  color: red;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 99999;
-  background: #fff;
-  pointer-events: none;
-}
