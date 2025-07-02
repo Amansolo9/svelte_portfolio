@@ -1,4 +1,6 @@
 <script>
+  import { injectAnalytics } from '@vercel/analytics/sveltekit'
+  injectAnalytics();
   import ThemeToggle from '../lib/ThemeToggle.svelte';
   import ArrowDown from 'phosphor-svelte/lib/ArrowDown';
   import { theme } from '../lib/themeStore.js';
