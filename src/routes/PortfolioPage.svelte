@@ -73,12 +73,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     min-height: 60vh;
-    gap: 3rem;
-    margin-top: 3rem;
-    padding-left: 0;
-    padding-right: 0;
+    gap: 3.5rem;
+    margin-top: 3.5rem;
+    padding-left: 6vw;
+    padding-right: 6vw;
     width: 100%;
   }
   @media (max-width: 900px) {
@@ -89,8 +89,8 @@
       gap: 2.5rem;
       min-height: unset;
       margin-top: 6rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
     .text-col, .image-col {
       padding-left: 0;
@@ -115,7 +115,7 @@
     align-items: flex-start;
     justify-content: center;
     min-width: 250px;
-    padding-left: 3.5rem;
+    padding-left: 2.5rem;
   }
   .typing-text {
     font-size: 2.2rem;
@@ -164,9 +164,9 @@
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     min-width: 220px;
-    padding-right: 3.5rem;
+    padding-right: 2.5rem;
   }
   .oval-frame {
     width: 270px;

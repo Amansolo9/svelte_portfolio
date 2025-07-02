@@ -1,4 +1,16 @@
-<script>
+<script lang="ts">
+  import { ArrowUpRight } from 'phosphor-svelte';
+  import PdfModal from '../PdfModal.svelte';
+  let modalOpen = false;
+  let modalPdfUrl = '';
+  function openPdf(url: string) {
+    modalPdfUrl = url;
+    modalOpen = true;
+  }
+  function closePdf() {
+    modalOpen = false;
+    modalPdfUrl = '';
+  }
 </script>
 
 <section class="about-section">
@@ -27,6 +39,49 @@
     </div>
   </div>
 
+  <h2 class="section-title">Certifications</h2>
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023</div>
+        <div class="card">
+          <div class="card-title">Android Application Development</div>
+          <div class="card-degree">Udemy</div>
+          <button class="cert-btn" on:click={() => openPdf('/assets/app build cert.pdf')}>
+            View Certification
+            <ArrowUpRight size={18} weight="bold" />
+          </button>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023</div>
+        <div class="card">
+          <div class="card-title">Flutter Bootcamp</div>
+          <div class="card-degree">Udemy</div>
+          <button class="cert-btn" on:click={() => openPdf('/assets/flutter cert.pdf')}>
+            View Certification
+            <ArrowUpRight size={18} weight="bold" />
+          </button>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023</div>
+        <div class="card">
+          <div class="card-title">Figma Masterclass</div>
+          <div class="card-degree">Udemy</div>
+          <button class="cert-btn" on:click={() => openPdf('/assets/figma cert.pdf')}>
+            View Certification
+            <ArrowUpRight size={18} weight="bold" />
+          </button>
+        </div>
+      </div>
+      <div class="timeline-line"></div>
+    </div>
+  </div>
+
   <h2 class="section-title">Experience</h2>
   <div class="timeline-container">
     <div class="timeline">
@@ -42,6 +97,8 @@
     </div>
   </div>
 </section>
+
+<PdfModal open = {modalOpen} pdfUrl={modalPdfUrl} on:close={closePdf} onClose={closePdf} />
 
 <style>
 .about-section {
@@ -255,5 +312,36 @@
     background: #77b323;
     z-index: 1;
   }
+}
+.cert-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 2rem auto 0 auto;
+  padding: 0.45rem 1.1rem;
+  border-radius: 1.2rem;
+  border: 1.5px solid #e0e0e0;
+  background: transparent;
+  color: #222;
+  font-size: 0.98rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: border 0.2s, color 0.2s;
+}
+.cert-btn:hover {
+  border: 1.5px solid #77b323;
+  color: #77b323;
+}
+:global(.dark) .cert-btn {
+  border: 1.5px solid #333;
+  color: #fff;
+  background: transparent;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+}
+:global(.dark) .cert-btn:hover {
+  border: 1.5px solid #77b323;
+  color: #77b323;
 }
 </style>
