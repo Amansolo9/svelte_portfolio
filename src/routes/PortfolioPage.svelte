@@ -94,8 +94,6 @@
     .text-col, .image-col {
       padding-left: 0 !important;
       padding-right: 0 !important;
-      width: 100%;
-      max-width: 100%; 
     }
     .image-col {
       display: flex;
@@ -112,7 +110,7 @@
       max-width: 90vw;
     }
     .oval-frame {
-      margin: 0 auto; 
+      margin: 0 auto;
     }
   }
   .text-col {

@@ -237,7 +237,7 @@
 }
 @media (max-width: 600px) {
   .about-section {
-    padding: 1.2rem 0.2rem 0 0.7rem;
+    padding: 1.2rem 0.7rem 0 0.7rem;
   }
   .section-title {
     font-size: 1.5rem;
@@ -291,13 +291,15 @@
     color: #bbbbbb;
   }
   .card {
-    width: 98vw;
+    width: calc(100% - 25px);
     max-width: 370px;
     height: auto;
     min-height: 110px;
-    padding: 1rem 0.7rem 1rem 0.7rem;
-    margin-left: 25px; 
+    padding: 1rem 0.7rem;
+    margin-left: 25px;
     order: 2;
+    box-sizing: border-box;
+    overflow: visible;
   }
   :global(.dark) .card {
     background: #232323;
@@ -312,7 +314,10 @@
     background: #77b323;
     z-index: 1;
   }
-  .card-title, .card-degree, .card-courses, .card-subtitle {
+  .card-title,
+  .card-degree,
+  .card-courses,
+  .card-subtitle {
     display: block;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
