@@ -2,8 +2,7 @@
   import { injectAnalytics } from '@vercel/analytics/sveltekit'
   injectAnalytics();
   import ThemeToggle from '../lib/ThemeToggle.svelte';
-  import ArrowDown from 'phosphor-svelte/lib/ArrowDown';
-  import List from 'phosphor-svelte/lib/List';
+  import { ArrowCircleDown, List } from 'phosphor-svelte';
   import { theme } from '../lib/themeStore.js';
   import { page } from '$app/stores';
   import { rootPage } from '../lib/pageControlStore.js';
@@ -40,7 +39,7 @@
   <nav class="navbar">
     <a href="/assets/CV Original.pdf" download class="down-group" style="text-decoration: none;">
       <div class="down-arrow">
-        <ArrowDown size={32} color={arrowColor} />
+        <ArrowCircleDown size={32} color={arrowColor} weight="duotone" />
       </div>
       <span class="download-cv">Download CV</span>
     </a>
@@ -52,7 +51,7 @@
         <a class="nav-link" href="/Contact" class:selected={$page.url.pathname.startsWith('/Contact')}>Contacts</a>
       </div>
       <button class="menu-btn" on:click={toggleMenu} aria-label="Open menu">
-        <List size={32} color={arrowColor} />
+        <List size={32} weight="duotone" color={arrowColor} />
       </button>
       {#if menuOpen}
         <div class="mobile-menu">

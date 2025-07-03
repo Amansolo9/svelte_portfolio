@@ -1,8 +1,7 @@
 <script>
-  import Sun from 'phosphor-svelte/lib/Sun';
-  import Moon from 'phosphor-svelte/lib/Moon';
-  import { onMount } from 'svelte';
   import { theme } from './themeStore.js';
+  import { Sun, Moon } from 'phosphor-svelte';
+  import { onMount } from 'svelte';
 
   let isDarkMode = false;
 
@@ -16,12 +15,14 @@
   }
 
   function toggleTheme() {
-    setTheme(!isDarkMode);
+    theme.update(t => t === 'dark' ? 'light' : 'dark');
   }
 
   $: theme.subscribe(val => {
     isDarkMode = val === 'dark';
   });
+
+  $: iconColor = $theme === 'dark' ? '#fff' : '#222';
 
   onMount(() => {
     const saved = localStorage.getItem('theme');
@@ -30,30 +31,28 @@
   });
 </script>
 
-<button class="theme-toggle" on:click={toggleTheme} aria-label="Toggle theme">
-  {#if isDarkMode}
-    <Sun size={24} color="#fff" />
+<button class="theme-toggle-btn" on:click={toggleTheme} aria-label="Toggle theme">
+  {#if $theme === 'dark'}
+    <Sun size={16} weight="duotone" class="theme-icon" color={iconColor} />
   {:else}
-    <Moon size={24} color="#222" />
+    <Moon size={16} weight="duotone" class="theme-icon" color={iconColor} />
   {/if}
 </button>
 
 <style>
-  .theme-toggle {
+  .theme-toggle-btn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.25rem;
-    border-radius: 50%;
-    transition: background-color 0.2s ease;
+    padding: 0.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .theme-toggle:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  .theme-icon {
+    transition: color 0.2s;
   }
-  :global(.dark) .theme-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  :global(.dark) .theme-icon {
+    color: #fff;
   }
 </style> 
