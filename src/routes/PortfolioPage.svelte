@@ -107,7 +107,9 @@
     }
     .image-col {
       justify-content: center;
+      align-items: center;
       padding-right: 0 !important;
+      width: 100%;
     }
     .typing-text {
       white-space: normal !important;
@@ -119,11 +121,7 @@
       max-width: 90vw;
     }
     .oval-frame {
-      width: 70vw;
-      max-width: 320px;
-      height: auto;
-      aspect-ratio: 4/5;
-      min-width: 180px;
+      margin: 0 auto;
     }
   }
   .text-col {
