@@ -88,14 +88,14 @@
       justify-content: center;
       gap: 2.5rem;
       min-height: unset;
-      margin-top: 6rem;
-      padding: 0; /* Remove all padding */
-      width: 100%;
+      margin: 6rem 0 0 0;
+      padding: 0;
+      width: 100vw;
+      box-sizing: border-box;
     }
 
-    .text-col,
-    .image-col {
-      padding: 0; /* Remove all padding */
+    .text-col {
+      padding: 0;
       margin: 0;
       width: 100%;
       max-width: 100%;
@@ -104,10 +104,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
     }
 
-    .text-col {
-      text-align: center;
+    .image-col {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .typing-text {
@@ -117,29 +125,41 @@
       font-size: 1.4rem;
       min-height: unset;
       word-break: break-word;
-      max-width: 90vw;
-      margin: 0 auto 1.2rem auto; /* Center with auto margins */
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%;
+      margin: 0 0 1.2rem 0;
+      padding: 0;
+      display: block;
+      border-right: none;
     }
 
     .subtitle-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .subtitle-light {
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     .about-paragraph {
       text-align: center;
-      max-width: 90vw;
-      margin: 0.7rem auto 0 auto; /* Center with auto margins */
+      width: 100%;
+      margin: 0.7rem 0 0 0;
+      padding: 0 1rem;
+      box-sizing: border-box;
     }
 
-    .image-col {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .oval-frame {
+      margin: 0 auto;
     }
   }
 
@@ -151,6 +171,12 @@
     justify-content: center;
     min-width: 250px;
     padding-left: 2.5rem;
+  }
+
+  @media (min-width: 901px) {
+    .text-col {
+      padding-left: 2.5rem;
+    }
   }
   .typing-text {
     font-size: 2.2rem;
