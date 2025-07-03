@@ -1,6 +1,5 @@
 <script lang="ts">
   import { theme } from '../lib/themeStore.js';
-  // Typing animation logic
   const texts = [
     "Amanuel Solomon",
     "Mobile Application Developer",
@@ -96,20 +95,12 @@
       padding-left: 0 !important;
       padding-right: 0 !important;
       width: 100%;
-      max-width: 100vw;
-      justify-content: center;
-      align-items: center;
-    }
-    .text-col {
-      align-items: center;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+      max-width: 100%; 
     }
     .image-col {
-      justify-content: center;
+      display: flex;
       align-items: center;
-      padding-right: 0 !important;
-      width: 100%;
+      justify-content: center;
     }
     .typing-text {
       white-space: normal !important;
@@ -121,7 +112,7 @@
       max-width: 90vw;
     }
     .oval-frame {
-      margin: 0 auto;
+      margin: 0 auto; 
     }
   }
   .text-col {
@@ -207,4 +198,4 @@
     object-position: center;
     display: block;
   }
-</style> 
+</style>
