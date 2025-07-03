@@ -312,6 +312,14 @@
     background: #77b323;
     z-index: 1;
   }
+  .card-title, .card-degree, .card-courses, .card-subtitle {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+    white-space: normal;
+    word-break: break-word;
+  }
 }
 .cert-btn {
   display: flex;

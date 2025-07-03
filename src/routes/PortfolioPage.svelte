@@ -93,12 +93,30 @@
       padding-right: 2.5rem;
     }
     .text-col, .image-col {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
       width: 100%;
       max-width: 100vw;
       justify-content: center;
       align-items: center;
+    }
+    .text-col {
+      align-items: center;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .image-col {
+      justify-content: center;
+      padding-right: 0 !important;
+    }
+    .typing-text {
+      white-space: normal !important;
+      overflow: visible !important;
+      text-align: center;
+      font-size: 1.4rem;
+      min-height: unset;
+      word-break: break-word;
+      max-width: 90vw;
     }
     .oval-frame {
       width: 70vw;

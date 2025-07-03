@@ -3,6 +3,7 @@
   injectAnalytics();
   import ThemeToggle from '../lib/ThemeToggle.svelte';
   import ArrowDown from 'phosphor-svelte/lib/ArrowDown';
+  import List from 'phosphor-svelte/lib/List';
   import { theme } from '../lib/themeStore.js';
   import { page } from '$app/stores';
   import { rootPage } from '../lib/pageControlStore.js';
@@ -10,6 +11,7 @@
   import MaintainancePage from './MaintainancePage.svelte';
   let arrowColor = "#222";
   $: arrowColor = $theme === 'dark' ? '#fff' : '#222';
+  let menuOpen = false;
   $: {
     if (typeof window !== 'undefined') {
       if ($theme === 'dark') {
@@ -18,6 +20,12 @@
         document.documentElement.classList.remove('dark');
       }
     }
+  }
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+  }
+  function closeMenu() {
+    menuOpen = false;
   }
 </script>
 
@@ -37,11 +45,23 @@
       <span class="download-cv">Download CV</span>
     </a>
     <div class="nav-right-group">
-      <div class="nav-links">
+      <div class="nav-links desktop-nav">
         <a class="nav-link" href="/" class:selected={$page.url.pathname === '/'}>Home</a>
         <a class="nav-link" href="/About" class:selected={$page.url.pathname.startsWith('/About')}>About Me</a>
         <a class="nav-link" href="/Projects" class:selected={$page.url.pathname.startsWith('/Projects')}>Projects</a>
+        <a class="nav-link" href="/Contact" class:selected={$page.url.pathname.startsWith('/Contact')}>Contacts</a>
       </div>
+      <button class="menu-btn" on:click={toggleMenu} aria-label="Open menu">
+        <List size={32} color={arrowColor} />
+      </button>
+      {#if menuOpen}
+        <div class="mobile-menu">
+          <a class="nav-link" href="/" on:click={closeMenu}>Home</a>
+          <a class="nav-link" href="/About" on:click={closeMenu}>About Me</a>
+          <a class="nav-link" href="/Projects" on:click={closeMenu}>Projects</a>
+          <a class="nav-link" href="/Contact" on:click={closeMenu}>Contacts</a>
+        </div>
+      {/if}
     </div>
   </nav>
   <hr class="divider" />
@@ -134,6 +154,42 @@
   }
   .nav-link:hover {
     color: #77b323;
+  }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 1.2rem;
+    padding: 0.2rem;
+  }
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 4.5rem;
+    right: 2.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+    padding: 1.2rem 2rem;
+    z-index: 3000;
+    flex-direction: column;
+    gap: 1.2rem;
+    min-width: 160px;
+  }
+  :global(.dark) .mobile-menu {
+    background: #232323;
+  }
+  @media (max-width: 800px) {
+    .nav-links.desktop-nav {
+      display: none;
+    }
+    .menu-btn {
+      display: block;
+    }
+    .mobile-menu {
+      display: flex;
+    }
   }
   .divider {
     margin-top: 5.5rem;
