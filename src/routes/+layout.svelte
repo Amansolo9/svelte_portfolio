@@ -65,10 +65,19 @@
     </div>
   </nav>
   <hr class="divider" />
-  <slot />
+  <div class="main-content">
+    <slot />
+  </div>
 {/if}
 
 <style>
+  :global(html, body) {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
   :global(.dark) .nav-link {
     color: #ffffff;
   }
@@ -90,13 +99,28 @@
     align-items: center;
     padding: 1.5rem 2.5rem 1.5rem 2.5rem;
     background: #fff;
-    width: 100vw;
+    width: 100%;
     box-sizing: border-box;
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     z-index: 1000;
   }
+
+  @media (max-width: 800px) {
+    .navbar {
+      padding: 1.5rem 1rem 1.5rem 1rem; /* Reduce padding on mobile */
+    }
+  }
+
+  .main-content {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
   .down-group {
     display: flex;
     flex-direction: column;
@@ -195,10 +219,10 @@
     margin-top: 5.5rem;
     border: none;
     border-top: 1.5px solid #e0e0e0;
-    width: 100vw;
+    width: 100%;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
   }
   :global(.dark) .navbar {
     background: #181818;
   }
-</style> 
+</style>
