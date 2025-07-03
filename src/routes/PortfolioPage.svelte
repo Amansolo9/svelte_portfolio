@@ -80,26 +80,38 @@
     padding-right: 6vw;
     width: 100%;
   }
+
+  /* --- MODIFIED MEDIA QUERY --- */
   @media (max-width: 900px) {
     .body-section {
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      /* Changed to center the columns horizontally */
+      align-items: center; /* This centers items along the cross-axis (horizontal for column) */
+      justify-content: flex-start; /* This aligns items along the main-axis (vertical for column) */
       gap: 2.5rem;
       min-height: unset;
       margin-top: 6rem;
       padding-left: 2.5rem;
       padding-right: 2.5rem;
     }
-    .text-col, .image-col {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
+
+    .text-col,
     .image-col {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /* Remove any specific padding/margin that might interfere with width */
+      padding: 0; /* Override any padding-left/right inherited or set */
+      margin: 0; /* Ensure no external margins are pushing it */
+      width: 100%; /* Force them to take full available width of body-section */
+      max-width: 100%;
+      box-sizing: border-box; /* Include padding/border in width calculation */
     }
+
+    .image-col {
+      /* These properties are correct for centering the oval-frame within image-col */
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center;   /* Center vertically (if height allows) */
+    }
+
     .typing-text {
       white-space: normal !important;
       overflow: visible !important;
@@ -107,17 +119,35 @@
       font-size: 1.4rem;
       min-height: unset;
       word-break: break-word;
-      max-width: 90vw;
+      /* Max width for text should be relative to its parent, or a fixed reasonable size */
+      max-width: 90vw; /* This might still cause issues for very narrow screens if text is long */
+      margin-left: auto; /* To help center it within itself if it doesn't take 100% width */
+      margin-right: auto;
     }
-    .oval-frame {
-      margin: 0 auto;
+
+    /* REMOVED: .oval-frame { margin: 0 auto; } - Let flexbox handle it */
+
+    /* Ensure text-col content is also centered */
+    .text-col {
+      align-items: center; /* This centers the typing-text, subtitle-group, and about-paragraph within text-col */
+      text-align: center; /* Ensures text inside paragraphs etc. is centered */
+    }
+    .about-paragraph {
+      text-align: center;
+    }
+    .subtitle-group {
+      align-items: center;
+      justify-content: center; /* Added for subtitle-group itself */
     }
   }
+
+  /* ... (rest of your CSS remains the same for larger screens) ... */
+
   .text-col {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* Default for large screens */
     justify-content: center;
     min-width: 250px;
     padding-left: 2.5rem;
