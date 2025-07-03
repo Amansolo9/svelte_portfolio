@@ -2,7 +2,7 @@
   import { injectAnalytics } from '@vercel/analytics/sveltekit'
   injectAnalytics();
   import ThemeToggle from '../lib/ThemeToggle.svelte';
-  import { ArrowCircleDown, List } from 'phosphor-svelte';
+  import { ArrowCircleDown, List, X } from 'phosphor-svelte';
   import { theme } from '../lib/themeStore.js';
   import { page } from '$app/stores';
   import { rootPage } from '../lib/pageControlStore.js';
@@ -50,8 +50,13 @@
         <a class="nav-link" href="/Projects" class:selected={$page.url.pathname.startsWith('/Projects')}>Projects</a>
         <a class="nav-link" href="/Contact" class:selected={$page.url.pathname.startsWith('/Contact')}>Contacts</a>
       </div>
-      <button class="menu-btn" on:click={toggleMenu} aria-label="Open menu">
-        <List size={32} weight="duotone" color={arrowColor} />
+      <button class="menu-btn" on:click={toggleMenu} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
+        {#if menuOpen}
+          <X size={32} weight="duotone" color={arrowColor} />
+        {:else}
+          <List size={32} weight="duotone" color={arrowColor} />
+        {/if}
+        <span class="menu-label">Menu</span>
       </button>
       {#if menuOpen}
         <div class="mobile-menu">
@@ -185,6 +190,16 @@
     cursor: pointer;
     margin-left: 1.2rem;
     padding: 0.2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.1rem;
+    text-align: center;
+    letter-spacing: 0.5px;
   }
   .mobile-menu {
     display: none;
@@ -208,7 +223,7 @@
       display: none;
     }
     .menu-btn {
-      display: block;
+      display: flex;
     }
     .mobile-menu {
       display: flex;

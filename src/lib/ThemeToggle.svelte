@@ -49,10 +49,4 @@
     align-items: center;
     justify-content: center;
   }
-  .theme-icon {
-    transition: color 0.2s;
-  }
-  :global(.dark) .theme-icon {
-    color: #fff;
-  }
 </style> 

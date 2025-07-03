@@ -1,5 +1,6 @@
 <script>
   import { Phone, EnvelopeSimple, TelegramLogo, GithubLogo, FigmaLogo, LinkedinLogo, TwitterLogo, ArrowUpRight } from 'phosphor-svelte';
+  import ContactMap from '../../lib/ContactMap.svelte';
 </script>
 
 <section class="contact-section">
@@ -44,6 +45,7 @@
       <a class="contact-link" href="https://x.com/kagelevelpower" target="_blank" rel="noopener">kagelevelpower <ArrowUpRight size={16} /></a>
     </div>
   </div>
+  <ContactMap />
 </section>
 
 <style>
