@@ -1,6 +1,18 @@
 <script>
-  import { Phone, EnvelopeSimple, TelegramLogo, GithubLogo, FigmaLogo, LinkedinLogo, TwitterLogo, ArrowUpRight } from 'phosphor-svelte';
+  import { Phone, EnvelopeSimple, TelegramLogo, GithubLogo, FigmaLogo, LinkedinLogo, TwitterLogo, ArrowUpRight, Copy } from 'phosphor-svelte';
   import ContactMap from '../../lib/ContactMap.svelte';
+  import { theme } from '../../lib/themeStore.js';
+  let copied = false;
+  /** @type {ReturnType<typeof setTimeout>} */
+  let copyTimeout;
+  const phoneNumber = '+251967286535';
+  $: copyIconColor = $theme === 'dark' ? '#fff' : '#222';
+  function copyPhone() {
+    navigator.clipboard.writeText(phoneNumber);
+    copied = true;
+    clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => copied = false, 1500);
+  }
 </script>
 
 <section class="contact-section">
@@ -9,15 +21,41 @@
     <div class="contact-item">
       <Phone size={28} weight="duotone" class="contact-icon" />
       <span class="contact-label">Phone:</span>
-      <span class="contact-value">+251967286535</span>
+      <span class="phone-copy-row">
+        <button
+          type="button"
+          class="contact-value copy-phone phone-btn"
+          on:click={copyPhone}
+          on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { copyPhone(); } }}
+          aria-label="Copy phone number to clipboard"
+          title="Copy to clipboard"
+        >
+          {phoneNumber}
+        </button>
+        <button
+          type="button"
+          class="clipboard-icon-wrap"
+          aria-label="Copy phone number to clipboard"
+          title="Copy to clipboard"
+          on:click={copyPhone}
+          on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { copyPhone(); } }}
+        >
+          <Copy size={22} weight="duotone" class="clipboard-icon" color={copyIconColor} />
+        </button>
+      </span>
+      {#if copied}
+        <span class="copied-msg">Copied!</span>
+      {/if}
     </div>
     <div class="contact-item">
       <EnvelopeSimple size={28} weight="duotone" class="contact-icon" />
       <span class="contact-label">Email:</span>
       <span class="contact-value">amana67286535@gmail.com</span>
-      <a class="email-btn" href="mailto:amana67286535@gmail.com" target="_blank" rel="noopener">
-        Send an email <ArrowUpRight size={16} />
-      </a>
+      <div class="email-btn-center">
+        <a class="email-btn" href="mailto:amana67286535@gmail.com" target="_blank" rel="noopener">
+          Send an email <ArrowUpRight size={16} />
+        </a>
+      </div>
     </div>
     <div class="contact-item">
       <TelegramLogo size={28} weight="duotone" class="contact-icon" />
@@ -127,8 +165,8 @@
   color: #4e7c1b;
 }
 .email-btn {
-  display: block;
-  margin: 0.7rem auto 0 auto;
+  display: inline-flex;
+  margin: 0.7rem 0 0 0;
   padding: 0.3rem 0.9rem;
   border-radius: 1.1rem;
   border: 1.5px solid #e0e0e0;
@@ -142,6 +180,9 @@
   transition: border 0.2s, color 0.2s;
   text-decoration: none;
   align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  white-space: nowrap;
 }
 .email-btn:hover {
   border: 1.5px solid #77b323;
@@ -156,6 +197,12 @@
 :global(.dark) .email-btn:hover {
   border: 1.5px solid #77b323;
   color: #77b323;
+}
+.email-btn-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media (max-width: 600px) {
   .contact-section {
@@ -176,11 +223,59 @@
     padding: 0.9rem 0.7rem;
   }
   .email-btn {
+    display: inline-flex;
+    width: auto;
     margin-left: 0;
     margin-top: 0.5rem;
-    width: 100%;
     justify-content: center;
-    display: flex;
+    align-self: flex-start;
+    max-width: 100%;
+    white-space: nowrap;
   }
+}
+.copy-phone {
+  cursor: pointer;
+  color: #444;
+  font-weight: 500;
+  margin-right: 0.3rem;
+  transition: color 0.2s;
+}
+.copy-phone:hover {
+  color: #77b323;
+}
+.copied-msg {
+  margin-left: 0.5rem;
+  color: #77b323;
+  font-size: 0.98rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.clipboard-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.phone-copy-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.1rem;
+  flex-wrap: nowrap;
+}
+.phone-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+.phone-btn:hover,
+.phone-btn:focus {
+  color: #77b323;
 }
 </style>
