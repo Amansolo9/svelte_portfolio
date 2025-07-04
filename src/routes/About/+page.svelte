@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ArrowUpRight } from 'phosphor-svelte';
+  import { ArrowUpRight, GithubLogo } from 'phosphor-svelte';
   import PdfModal from '../PdfModal.svelte';
   let modalOpen = false;
   let modalPdfUrl = '';

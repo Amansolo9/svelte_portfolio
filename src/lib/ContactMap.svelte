@@ -11,7 +11,10 @@
   const attribution = '&copy; <a href="https://carto.com/attributions">CARTO</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
   function getTileUrl() {
-    return document.documentElement.classList.contains('dark') ? darkTiles : lightTiles;
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('dark') ? darkTiles : lightTiles;
+    }
+    return lightTiles; // default to light tiles for SSR
   }
 
   function updateTileLayer() {

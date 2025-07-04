@@ -110,6 +110,8 @@
     left: 0;
     right: 0;
     z-index: 1000;
+    border-bottom: 1.5px solid #e0e0e0;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
   }
 
   @media (max-width: 800px) {
@@ -238,5 +240,7 @@
   }
   :global(.dark) .navbar {
     background: #181818;
+    border-bottom: 1.5px solid #333;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
   }
 </style>
