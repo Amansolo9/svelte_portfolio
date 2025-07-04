@@ -4,8 +4,8 @@
   let mapElement: HTMLDivElement;
   let map: any;
   let tileLayer: any;
+  let observer: MutationObserver | undefined;
 
-  // Tile URLs
   const darkTiles = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'; // light map for dark mode
   const lightTiles = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'; // dark map for light mode
   const attribution = '&copy; <a href="https://carto.com/attributions">CARTO</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -32,7 +32,6 @@
       attribution
     }).addTo(map);
 
-    // Custom marker with your brand image, smaller and rounded
     const brandIcon = L.icon({
       iconUrl: '/assets/map.png',
       iconSize: [32, 32],
@@ -43,15 +42,13 @@
 
     L.marker([9.035, 38.752], { icon: brandIcon }).addTo(map);
 
-    // Listen for theme changes (MutationObserver on class attribute)
-    const observer = new MutationObserver(onThemeChange);
+    observer = new MutationObserver(onThemeChange);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  });
 
-    // Clean up observer on destroy
-    onDestroy(() => {
-      if (map) map.remove();
-      observer.disconnect();
-    });
+  onDestroy(() => {
+    if (map) map.remove();
+    if (observer) observer.disconnect();
   });
 </script>
 
