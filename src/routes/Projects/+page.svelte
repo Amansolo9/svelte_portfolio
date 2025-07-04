@@ -168,16 +168,16 @@
 }
 @media (max-width: 400px) {
   .skills-carousel-outer {
-    padding: 0 18vw;
+    padding: 3.5rem 2.5vw 0 2.5vw;
   }
   .skills-carousel {
-    gap: 0.5rem;
-    max-width: 60vw;
+    gap: 0.8rem;
+    max-width: 100%;
   }
   .skill-icon-wrap {
-    min-width: 38vw;
-    min-height: 38vw;
-    font-size: 1.5rem;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 1.4rem;
   }
 }
 .projects-section {
